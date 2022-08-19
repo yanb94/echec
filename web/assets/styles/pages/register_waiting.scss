@@ -1,0 +1,61 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+@use "./../mixins/button.scss" as button;
+
+.register_waiting
+{
+    @include element.headPage(
+        $image: "login.jpg"
+    );
+
+    @include element.contPage(){
+        @include element.cardPage($maxWidth: 600px){
+
+            &--title
+            {
+                font-family: g.$fontTitle;
+                font-size: 35px;
+                font-weight: bold;
+                line-height: 45px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            &--msg
+            {
+                font-family: g.$fontBody;
+                font-size: 25px;
+                line-height: 30px;
+                text-align: justify;
+            }
+
+            &--btn-cont
+            {
+                display: grid;
+                grid-template-rows: auto auto;
+                padding: 30px 0;
+                justify-content: space-between;
+                row-gap: 20px;
+
+                @media (min-width: map-get(g.$breakPoint,"S")) {
+                    grid-template-rows: auto;
+                    grid-template-columns: auto auto ;
+                    row-gap: 0;
+                    column-gap: 40px;
+                }
+            }
+
+            &--btn-home
+            {
+                @include button.buttonTertiary($width: 200px, $height: 60px, $fontSize: 25px);
+            }
+
+            &--btn-forum
+            {
+                @include button.buttonSecondary($width: 200px, $height: 60px, $fontSize: 25px);
+            }
+
+        }
+    }
+}

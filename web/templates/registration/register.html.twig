@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        "S'inscrire - Le coin des échecs",
+        "Rejoignez la communauté du coin des échecs",
+        asset('build/images/login.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+<div class="register-page">
+
+    <div class="register-page--head">
+        <div class="register-page--head--background"></div>
+        <div class="register-page--head--content">
+            <h1 class="register-page--head--content--title">S'inscrire</h1>
+        </div>
+    </div>
+    <div class="register-page--cont">
+        <div class="register-page--cont--card">
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+
+            {{ form_start(registrationForm, {"attr": {"class": "register-page--cont--card--form"}}) }}
+
+                {{ form_row(registrationForm.firstname) }}
+                {{ form_row(registrationForm.lastname) }}
+
+                <hr class="register-page--cont--card--separator">
+
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <div class="register-page--cont--card--form--cont-btn">
+                    <button type="submit" class="register-page--cont--card--form--btn">S'inscrire</button>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('register') }}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "S'inscrire",
+        "description": "Rejoignez la communauté du coin des échecs"
+    }
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('register') }}
+{% endblock %}

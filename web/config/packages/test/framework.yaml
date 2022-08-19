@@ -1,0 +1,10 @@
+framework:
+    test: true
+    session:
+        storage_id: session.storage.mock_file
+    cache:
+        app: cache.adapter.array
+
+liip_test_fixtures:
+    cache_db:
+        sqlite: liip_test_fixtures.services_database_backup.sqlite

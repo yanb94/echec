@@ -1,0 +1,14 @@
+{% for key, value in field.value %}
+    <div class="msg-signal-types">
+        <div class="msg-signal-types--nb">{{ value }}</div>
+        <div class="msg-signal-types--label">{{ key|signal_motif }}</div>
+    </div>
+{% endfor %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin-msg-signal-types') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin-msg-signal-types') }}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('space_member') }}" class="drawer--body--item">Espace Membre</a>
+    <a href="{{ path('app_logout') }}" class="drawer--body--item">Se déconnecter</a>
+{% else %}
+    <a href="{{ path('app_login') }}" class="drawer--body--item">S'identifier</a>
+    <a href="{{ path('app_register') }}" class="drawer--body--item">S'inscrire</a>
+{% endif %}

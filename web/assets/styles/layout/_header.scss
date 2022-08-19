@@ -1,0 +1,94 @@
+@use './../abstracts/' as g;
+
+.header
+{
+    height: 60px;
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+
+    display: grid;
+    grid-template-columns: 50px auto;
+    z-index: 3;
+
+    padding: 0 10px;
+
+    &--drawer
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--button
+        {
+            font-size: 35px;
+            color: g.$white;
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+                display: none;
+            }
+        }
+    }
+
+    &--nav
+    {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        &--link
+        {
+            color: g.$white;
+            margin-left: 15px;
+            font-family: g.$fontSubtitle;
+            font-size: 25px;
+            display: none;
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "M")) {
+                display: initial;
+            }
+
+            &.icon
+            {
+                font-size: 35px;
+                display: initial;
+            }
+        }
+
+        &--form
+        {
+            width: 0;
+            overflow: hidden;
+            transition: .7s;
+            margin-right: -15px;
+            margin-left: 15px;
+
+            @media (max-width: map-get($map: g.$breakPoint, $key: "S")) {
+                display: none!important;
+            }
+
+            &.open
+            {
+                width: 150px;
+                overflow: visible;
+                overflow-x: hidden;
+            }
+
+            &--search
+            {
+                border: none;
+                border-bottom: 2px solid g.$white;
+                background-color: transparent;
+                color: g.$white;
+                
+                height: 30px;
+
+                &:hover
+                {
+                    outline: 0;
+                }
+            }
+        }
+    }
+}

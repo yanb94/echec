@@ -1,0 +1,88 @@
+@use "./../abstracts/" as g;
+
+body.search-phone-open
+{
+    height: 100vh;
+    overflow: hidden;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+        height: initial;
+        overflow: initial;
+    }
+}
+
+.search-phone
+{
+    position: absolute;
+    z-index: 10001;
+    top:-100%;
+    height: 100vh;
+    left: 0;
+    right: 0;
+    background-color: map-get($map: g.$primary, $key: "regular");
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .7s;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+        display: none;
+    }
+
+    &.open
+    {
+        transform: translateY(100vh);
+    }
+
+    &--close
+    {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        color: g.$white;
+    }
+
+    &--form
+    {
+        display: grid;
+        grid-template-columns: auto 30px;
+
+        &--search,&--btn
+        {
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid g.$white;
+            height: 30px;
+            color: g.$white;
+        }
+
+        &--search
+        {
+            font-size: 25px;
+            width: 200px;
+            font-family: g.$fontBody;
+
+            &:focus
+            {
+                outline: 0;
+            }
+
+            &::placeholder
+            {
+                color: rgba(g.$white,0.5);
+                font-family: g.$fontBody;
+                font-style: italic;
+                font-size: 25px;
+            }
+        }
+
+        &--btn
+        {
+            width: 30px;
+            font-size: 20px;
+        }
+    }
+}

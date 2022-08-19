@@ -1,0 +1,18 @@
+{% extends "email_base.mjml.twig" %}
+
+{% block content %}
+    <mj-section>
+        <mj-column>
+          <mj-text font-size="15px">
+            Un nouveau message vient d'être posté dans le sujet "<span style="font-weight:bold">{{ post.title }}</span>" que vous suivez.
+          </mj-text>
+          <mj-text font-size="15px">
+          	Pour voir le message cliquez sur le bouton ci-dessous.
+          </mj-text>
+          <mj-button href="{{ url }}" color="#fff" background-color="#830211" vertical-align="middle" font-size="16px">
+                Voir le message
+            </mj-button>
+          <mj-text font-style="italic">Pour ne plus suivre ce sujet décocher la case "Suivre ce sujet"</mj-text>
+        </mj-column>
+    </mj-section>
+{% endblock %}

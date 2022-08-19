@@ -1,0 +1,5 @@
+<div class="homepage--list--cont">
+    {% for post in posts %}
+        {% include "homepage/_topic.html.twig" with {"post": post} %}
+    {% endfor %}
+</div>

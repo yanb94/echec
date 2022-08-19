@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        post.title,
+        post.startMsg.content,
+        asset('build/images/post-forum.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success_signal') %}
+        <div class="post-forum--notice">
+            <div class="post-forum--notice--close">
+                <i class="fas fa-times"></i>
+            </div>
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="post-forum--modal">
+        <div class="post-forum--modal--container">
+            <div class="post-forum--modal--cont">
+                <div class="post-forum--modal--cont--close">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="post-forum--modal--cont--title">
+                    Signaler ce message
+                </div>
+                <div class="post-forum--modal--cont--msg"></div>
+                <hr class="post-forum--modal--cont--separator">
+                <div class="post-forum--modal--cont--form">
+                    {{ form_start(formSignal) }}
+                        {{ form_row(formSignal.motif) }}
+                        {{ form_row(formSignal.message) }}
+
+                        <div class="post-forum--modal--cont--form--motif--cont-btn">
+                            <button class="post-forum--modal--cont--form--motif--btn">
+                                Envoyer
+                            </button>
+                        </div>
+                    {{ form_end(formSignal) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-forum">
+        <div class="post-forum--head">
+            <div class="post-forum--head--background"></div>
+            <div class="post-forum--head--content">
+                <h1 class="post-forum--head--content--title">{{ post.title }}</h1>
+            </div>
+        </div>
+        <div class="post-forum--cont">
+            <div class="post-forum--cont--container">
+                {% if is_granted('ROLE_USER') %}
+                    <div class="post-forum--cont--container--follow-cont">
+                        <div class="post-forum--cont--container--follow-cont--cont">
+                            <input type="checkbox" name="follow-checkbox" id="follow-checkbox" {{ app.user.id in followers ? "checked" }} data-subject={{ post.id }}>
+                            <label for="follow-checkbox">Suivre ce sujet</label>
+                        </div>
+                    </div>
+                {% endif %}
+                {% include "forum/_msg.html.twig" with {'msg': post.startMsg, 'isStartMsg': true} %}
+
+                {% if post.hasAnswer %}
+                    <div class="post-forum--cont--container--answer-nb">
+                        {{ nbAnswer }} Réponse{{ nbAnswer > 1 ? "s" }} acceptée{{ nbAnswer > 1 ? "s" }}
+                    </div>
+
+                    {% for message_answer in messagesAnswer %}
+                        {% include "forum/_msg.html.twig" with {'msg': message_answer, 'isAnswer': true} %}
+                    {% endfor %}
+                {% endif %}
+
+                <hr class="post-forum--cont--container--separator">
+
+                {% for message in messages %}
+                    {% include "forum/_msg.html.twig" with {'msg': message} %}
+                {% endfor %}
+
+                {% if messages|length > 0 %}
+                    <hr class="post-forum--cont--container--separator">
+                {% endif %}
+
+                {% if is_granted("ROLE_USER") %}
+
+                    <div class="post-forum--cont--container--form-label">
+                        Ajouter un commentaire
+                    </div>
+
+                    {{ form_start(form) }}
+                    {{ form_row(form.content) }}
+                        <div class="post-forum--cont--container--cont-btn">
+                            <button class="post-forum--cont--container--btn">
+                                Répondre
+                            </button>
+                        </div>
+                    {{ form_end(form) }}
+
+                {% else %}
+                    <div class="post-forum--cont--container--not-logged">
+                        Pour ajouter un message veuillez vous connecter.
+                        <a class="post-forum--cont--container--not-logged--btn" href="{{ path('app_login') }}">
+                            Se connecter
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if isPreviousPage or isNextPage %}
+                    <hr class="post-forum--cont--container--separator">
+                {% endif %}
+
+                <div class="post-forum--cont--pagination">
+                    {% if isPreviousPage %}
+                        {% set params = app.request.query.all|merge(app.request.attributes.get('_route_params'))|merge({"page": previousPageNb}) %}
+
+                        <a href="{{ path('forum_post', params) }}" class="post-forum--cont--pagination--prev post-forum--cont--pagination--paginate">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    {% endif %}
+                    {% if isNextPage %}
+                        {% set params = app.request.query.all|merge(app.request.attributes.get('_route_params'))|merge({"page": nextPageNb}) %}
+
+                        <a href="{{ path('forum_post', params) }}" class="post-forum--cont--pagination--next post-forum--cont--pagination--paginate">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('post_forum') }}
+
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org",
+        "@type":"DiscussionForumPosting",
+        "@id": "{{ url(app.request.attributes.get("_route"), app.request.attributes.get("_route_params")) }}",
+        "headline": "{{ post.title }}",
+        "dateCreated": "{{ post.createdAt|date }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ post.author.username }}"
+        },
+        "interactionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/CommentAction",
+            "userInteractionCount": {{ nb }}
+        }
+    }
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('post_forum') }}
+{% endblock %}

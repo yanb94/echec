@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}A propos{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        "A propos - Le coin des échecs",
+        "Nous sommes une équipe de passionés d'échecs qui souhaite partagez sa passion avec le plus grand nombre",
+        asset('build/images/about.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+    <div class="about-page">
+        <div class="about-page--head">
+            <div class="about-page--head--background"></div>
+            <div class="about-page--head--content">
+                <h1 class="about-page--head--content--title">A propos</h1>
+            </div>
+        </div>
+        <div class="about-page--cont">
+            <div class="about-page--cont--container">
+                <h2 class="about-page--cont--question">Qui sommes nous ?</h2>
+                <p class="about-page--cont--desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Mauris maximus nibh nulla, vitae mollis mi commodo rhoncus.
+                    Phasellus non aliquet nisl. In tempus scelerisque cursus.
+                    Duis vel risus fringilla, commodo leo vel, eleifend mauris.
+                    Aliquam eleifend sapien eu lobortis.
+                    Morbi sodales, est vel tempus consectetur, tellus turpis facilisis lorem, a dignissim lorem mi vel ante.
+                    Integer vel urna gravida lectus convallis tristique. Nam vehicula justo lorem, eu blandit leo tincidunt at.
+                    Aliquam fringilla nunc accumsan, aliquam elit eu, mollis nisl.
+                    Proin nec erat libero.
+                    Sed at turpis lacus. Pellentesque ac tristique libero.
+                    Morbi sodales, est vel tempus consectetur, tellus turpis facilisis lorem, a dignissim lorem mi vel ante.
+                    Integer vel urna gravida lectus convallis tristique. Nam vehicula justo lorem, eu blandit leo tincidunt at.
+                    Aliquam fringilla nunc accumsan, aliquam elit eu, mollis nisl.
+                    Proin nec erat libero.
+                    Sed at turpis lacus. Pellentesque ac tristique libero.
+                </p>
+                <div class="about-page--cont--team">
+                    <h2 class="about-page--cont--team--title">Notre Équipe</h2>
+                    <div class="about-page--cont--team--list">
+                        {% for i in 1..3 %}
+                            <div class="about-page--cont--team--item">
+                                <img src="{{ asset("images/person" ~ i ~ ".jpg") }}" class="about-page--cont--team--item--img" alt="Person {{ i }}"/>
+                                <h3 class="about-page--cont--team--item--title">Person {{ i }}</h3>
+                                <p class="about-page--cont--team--item--desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Mauris maximus nibh nulla,
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Mauris maximus nibh nulla,
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('about_page') }}
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org",
+        "@type":"AboutPage",
+        "@id": "{{ url(app.request.attributes.get("_route"), app.request.attributes.get("_route_params")) }}"
+        "name": "A propos",
+        "description": "Nous sommes une équipe de passionés d'échecs qui souhaite partagez sa passion avec le plus grand nombre"
+    }
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('about_page') }}
+{% endblock %}

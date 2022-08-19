@@ -1,0 +1,92 @@
+@use "./../abstracts/" as g;
+
+.footer
+{
+    background-color: map-get($map: g.$secondary, $key: "regular");
+    height: 300px;
+    color: g.$white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+        display: grid;
+        grid-template-columns: 400px auto 400px;
+        justify-content: stretch;
+    }
+
+    &--info
+    {
+        display: none;
+        width: 400px;
+        padding: 20px;
+
+        @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+            display: block;
+        }
+
+        &--title
+        {
+            font-family: g.$fontTitle;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        &--desc
+        {
+            font-family: g.$fontBody;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        &--actions
+        {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: auto auto auto;
+            grid-row: 20px;
+            margin-top: 20px;
+            row-gap: 10px;
+
+            &--item
+            {
+                font-family: g.$fontSubtitle;
+                color: inherit;
+                font-size: 20px;
+            }
+        }
+    }
+
+    &--socialNetwork
+    {
+        &--label
+        {
+            font-family: g.$fontSubtitle;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        &--list
+        {
+            margin-top: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &--item
+            {
+                font-size: 40px;
+                color: inherit;
+
+                height: 60px;
+                width: 60px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{% extends "email_base.mjml.twig" %}
+
+{% block content %}
+    <mj-section>
+        <mj-column>
+            <mj-text font-size="20px" font-weight="900" align="center">
+                Finaliser votre changement d'email
+            </mj-text>
+            <mj-text font-size="15px">
+                Pour finaliser votre changement d'email veuillez cliquez sur le lien ci-dessous.
+            </mj-text>
+            <mj-text font-style="italic">Ce lien expira dans {{ date }}</mj-text>
+            <mj-button href="{{ link|raw }}" color="#fff" background-color="#830211" vertical-align="middle" font-size="16px">
+                Confirmer mon nouvel email
+            </mj-button>
+        </mj-column>
+    </mj-section>
+{% endblock %}

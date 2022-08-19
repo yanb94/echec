@@ -1,0 +1,34 @@
+<footer class="footer">
+    <div class="footer--info">
+        <div class="footer--info--title">Le coin des échecs</div>
+        <div class="footer--info--desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vestibulum lobortis consectetur quam nec consectetur.
+            Mauris euismod velit vitae massa euismod, a feugiat tellus molestie.
+        </div>
+        <div class="footer--info--actions">
+            <a href="{{ path('about') }}" class="footer--info--actions--item">
+                A propos
+            </a>
+            <a href="{{ path('contact') }}" class="footer--info--actions--item">
+                Contact
+            </a>
+            {{ render_esi(controller("App\\Controller\\LegalController::partialListLegal", {"class": "footer--info--actions--item"})) }}
+        </div>
+    </div>
+    <div></div>
+    <div class="footer--socialNetwork">
+        <div class="footer--socialNetwork--label">Réseaux sociaux</div>
+        <div class="footer--socialNetwork--list">
+            <a href="https://www.facebook.com/" class="footer--socialNetwork--list--item" title="Page Facebook">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://twitter.com/" class="footer--socialNetwork--list--item" title="Fil Twitter">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.pinterest.fr/" class="footer--socialNetwork--list--item" title="Pinterest">
+                <i class="fab fa-pinterest-p"></i>
+            </a>
+        </div>
+    </div>
+</footer>

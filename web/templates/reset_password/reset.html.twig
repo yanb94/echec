@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié ?{% endblock %}
+
+{% block body %}
+
+<div class="reset_password">
+
+    <div class="reset_password--head">
+        <div class="reset_password--head--background"></div>
+        <div class="reset_password--head--content">
+        </div>
+    </div>
+    <div class="reset_password--cont">
+        <div class="reset_password--cont--card">
+
+            <h1 class="reset_password--cont--card--title">Réinitialiser le mot de passe</h1>
+
+            {{ form_start(resetForm) }}
+                {{ form_row(resetForm.plainPassword) }}
+                <div class="reset_password--cont--card--cont-btn">
+                    <button class="reset_password--cont--card--btn">Réinitialiser</button>
+                </div>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('reset_password') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('reset_password') }}
+{% endblock %}

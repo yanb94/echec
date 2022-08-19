@@ -1,0 +1,45 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+@use "./../form/form.scss" as form;
+@use "./../mixins/button.scss" as button;
+
+.contact-page
+{
+    @include element.headPage(
+        $image: "contact.jpg"
+    )
+    {
+        &--background
+        {
+            background-position: 10% 60%;
+        }
+    };
+
+    @include element.contPage(){
+        @include element.cardPage($maxWidth: 600px){
+
+            form
+            {
+                width: 100%;
+            }
+
+            &--btn
+            {
+                @include button.buttonTertiary($height: 60px,$width: 200px,$fontSize: 25px){
+                    border-style: none;
+                };
+            }
+
+            &--cont-btn
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 20px;
+            }
+
+        }
+    }
+}

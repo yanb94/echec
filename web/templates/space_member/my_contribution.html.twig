@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Mes contributions{% endblock %}
+
+{% block body %}
+    <div class="my_contribution">
+        <div class="my_contribution--head">
+            <div class="my_contribution--head--background"></div>
+            <div class="my_contribution--head--content">
+                <h1 class="my_contribution--head--content--title">Mes contributions</h1>
+            </div>
+        </div>
+        <div class="my_contribution--cont">
+            <div class="my_contribution--cont--list">
+                {% for message in messages %}
+                    {% include "space_member/_msg.html.twig" with {"msg": message} %}
+                {% endfor %}
+                <div class="my_contribution--cont--list--pagination">
+                    {% if isPreviousPage %}
+                        {% set params = app.request.query.all|merge({"page": previousPageNb}) %}
+
+                        <a href="{{ path('my_contribution', params) }}" class="my_contribution--cont--list--pagination--prev my_contribution--cont--list--pagination--paginate">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    {% endif %}
+                    {% if isNextPage %}
+                        {% set params = app.request.query.all|merge({"page": nextPageNb}) %}
+
+                        <a href="{{ path('my_contribution', params) }}" class="my_contribution--cont--list--pagination--next my_contribution--cont--list--pagination--paginate">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('my_contribution') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('my_contribution') }}
+{% endblock %}

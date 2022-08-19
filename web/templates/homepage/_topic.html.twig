@@ -1,0 +1,35 @@
+<div class="topic-homepage {{ follow is defined and follow ? "follow" }}">
+    <div class="topic-homepage--infos">
+        <div class="topic-homepage--infos--title">
+            {% if post.isRequestAnswer %}
+                {% if post.hasAnswer %}
+                    <i class="far fa-check-circle"></i>
+                {% else %}
+                    <i class="far fa-question-circle"></i>
+                {% endif %}
+            {% else %}
+                <i class="fas fa-comments"></i>
+            {% endif %}
+        {{ post.title }}
+        </div>
+        <div class="topic-homepage--infos--msg">
+            <i class="fas fa-comments"></i> {{ post.nbComments }} réponse{{ post.nbComments > 1 ? "s" }}
+        </div>
+        <div class="topic-homepage--infos--dates">
+            <div class="topic-homepage--infos--dates--createdAt">
+                <div class="topic-homepage--infos--dates--createdAt--label">Créer, {{ post.createdAt|ago }}</div>
+            </div>
+            <div class="topic-homepage--infos--dates--lastMsg">
+                <div class="topic-homepage--infos--dates--lastMsg--label">Dernier message, {{ post.lastMsgAt|ago }}</div>
+            </div>
+        </div>
+    </div>
+    <a class="topic-homepage--seeMore" href="{{ path('forum_post', {'slug': post.slug}) }}">
+        Voir
+    </a>
+    {% if follow is defined and follow %}
+        <a class="topic-homepage--follow" href="{{ path('unfollow_subject', {'id': post.id}) }}">
+            Ne plus suivre
+        </a>
+    {% endif %}
+</div>

@@ -1,0 +1,9 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('space_member') }}" class="homepage--head--content--btn-register">
+        Mon espace
+    </a>
+{% else %}
+    <a href="{{ path('app_register') }}" class="homepage--head--content--btn-register">
+        Nous rejoindre
+    </a>
+{% endif %}

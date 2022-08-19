@@ -1,0 +1,73 @@
+@use './../abstracts/' as g;
+
+@mixin button($colorBackground,$colorText,$colorShadow,$height,$width,$fontSize) {
+    height: $height;
+    width: $width;
+
+    background-color: $colorBackground;
+    color: $colorText;
+    box-shadow: 0px 3px 6px $colorShadow;
+
+    font-family: g.$fontSubtitle;
+    font-size: $fontSize;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    @content;
+
+    &:hover
+    {
+        box-shadow: 0px 1px 6px $colorShadow;
+    }
+}
+
+@mixin buttonSecondary($height,$width,$fontSize)
+{
+    @include button(
+        $colorBackground: map-get(g.$secondary,"dark"),
+        $colorText: g.$white,
+        $colorShadow: rgba($color: map-get(g.$secondary,"Vdark"), $alpha: .16),
+        $height: $height,
+        $width: $width,
+        $fontSize: $fontSize
+        )
+    {
+        @content;
+    }
+}
+
+@mixin buttonTertiary($height,$width,$fontSize)
+{
+    @include button(
+        $colorBackground: map-get(g.$tertiary,"dark"),
+        $colorText: g.$white,
+        $colorShadow: rgba($color: map-get(g.$tertiary,"Vdark"), $alpha: .16),
+        $height: $height,
+        $width: $width,
+        $fontSize: $fontSize
+        )
+    {
+        @content;
+    }
+}
+
+@mixin buttonPrimary($height,$width,$fontSize)
+{
+    @include button(
+        $colorBackground: map-get(g.$primary,"light"),
+        $colorText: g.$white,
+        $colorShadow: rgba($color: map-get(g.$primary,"Vdark"), $alpha: .16),
+        $height: $height,
+        $width: $width,
+        $fontSize: $fontSize
+        )
+    {
+        @content;
+    }
+}

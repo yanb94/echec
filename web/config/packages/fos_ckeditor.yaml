@@ -1,0 +1,24 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+fos_ck_editor:
+    base_path: "build/ckeditor"
+    js_path:   "build/ckeditor/ckeditor.js"
+    configs:
+        my_toolbar:
+            toolbar: "my_toolbar"
+            removeButtons: ~
+            format_tags: "p;h2;h3"
+        toolbar_msg:
+            toolbar: "toolbar_msg"
+            removeButtons: ~
+    toolbars:
+        configs:
+            my_toolbar: ["@basicstyles","@link","@format"]
+            toolbar_msg: ["@basicstyles","@link"]
+        items:
+            basicstyles: [ "Bold", "Italic", "Underline",'-', "RemoveFormat"]
+            link: [ "Link", "Unlink" ]
+            format: [ "Format" ]

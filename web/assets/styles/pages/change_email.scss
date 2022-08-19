@@ -1,0 +1,51 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+@use "./../mixins/button.scss" as button;
+@use "./../form/form.scss" as form;
+
+.change_email
+{
+    @include element.headPage(
+        $image: "space_member.jpg"
+    );
+
+    @include element.contPage(){
+    
+        @include element.cardPage($maxWidth: 600px, $cardMargin: 130px){
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                top: -140px;
+            }
+
+            form
+            {
+                width: 100%;
+            }
+
+            &--btn-cont
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 20px;
+            }
+
+            &--btn
+            {
+                @include button.buttonTertiary($height: 60px,$width: 200px,$fontSize: 25px){
+                    border-style: none;
+                };
+            }
+
+            &--separator
+            {
+                color: g.$black;
+                width: 100%;
+                margin: 15px 0;
+            }
+        }
+    
+    }
+}

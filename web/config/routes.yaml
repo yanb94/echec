@@ -1,0 +1,5 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+user_context_hash:
+    path: /_fos_user_context_hash

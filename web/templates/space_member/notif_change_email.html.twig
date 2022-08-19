@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Demande de changement d'email prise en compte{% endblock %}
+
+{% block body %}
+    <div class="notif_change_email">
+        <div class="notif_change_email--head">
+            <div class="notif_change_email--head--background"></div>
+            <div class="notif_change_email--head--content">
+            </div>
+        </div>
+        <div class="notif_change_email--cont">
+            <div class="notif_change_email--cont--card">
+                <div class="notif_change_email--cont--card--title">
+                    Demande de changement d'email
+                </div>
+                <div class="notif_change_email--cont--card--msg">
+                    Votre demande de changement d'email a bien été prise en compte.
+                    Vous allez recevoir un email contenant un lien vous permettant de finaliser votre changment d'email a votre nouvelle adresse.
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('notif_change_email') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('notif_change_email') }}
+{% endblock %}

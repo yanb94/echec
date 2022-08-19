@@ -1,0 +1,15 @@
+grumphp:
+    git_hook_variables:
+        EXEC_GRUMPHP_COMMAND: "docker-compose run --rm --no-deps php-fpm php"
+    tasks:
+        composer:
+            no_check_all: true
+        phpstan:
+            ignore_patterns: ["tests"]
+        phpcs:
+            ignore_patterns: ["migrations"]
+        phplint: ~
+        twigcs:
+            path: "templates"
+        phpunitbridge:
+            testsuite: unit-test

@@ -1,0 +1,74 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../form/form.scss" as form;
+@use "./../mixins/button.scss" as button;
+@use "./../mixins/elements.scss" as element;
+
+.login-page
+{
+    @include element.headPage(
+        $image: "login.jpg"
+    );
+
+    @include element.contPage(){
+
+        @include element.cardPage($maxWidth: 600px){
+
+            &--form
+            {
+                width: 100%;
+
+                &--btn
+                {
+                    @include button.buttonTertiary($height: 60px,$width: 200px,$fontSize: 25px){
+                        border-style: none;
+                    };
+                }
+
+                &--btn-cont
+                {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 15px 20px;
+                }
+            }
+
+            &--forgot-password
+            {
+                font-size: 15px;
+                font-family: g.$fontSubtitle;
+                color: g.$black;
+                margin-bottom: 10px;
+            }
+
+            &--separator
+            {
+                color: g.$black;
+                width: 100%;
+            }
+
+            &--label-register
+            {
+                font-family: g.$fontSubtitle;
+                font-size: 25px;
+                text-align: center;
+            }
+
+            &--cont-register
+            {
+                display: flex;
+                padding: 15px 20px;
+                align-items: center;
+                justify-content: center;
+
+                &--btn
+                {
+                    @include button.buttonSecondary($height: 60px,$width: 200px,$fontSize: 25px);
+                }
+            }
+
+        };
+
+    };
+}

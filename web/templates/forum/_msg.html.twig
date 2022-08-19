@@ -1,0 +1,27 @@
+<div id="msg-{{ msg.id }}" class="post-forum-msg {{ isAnswer is defined and isAnswer ? 'isAnswer' }}">
+    <div class="post-forum-msg--author">
+        De {{ msg.author.username }}
+        <div class="post-forum-msg--actions">
+            <i class="fas fa-ellipsis-v"></i>
+                <div class="post-forum-msg--actions--list" data-msg="msg-{{ msg.id }}">
+                    Signaler
+                </div>
+        </div>
+    </div>
+    <div class="post-forum-msg--content">
+        {{ msg.isModerate ? "<i class='post-forum-msg--content--moderate'>Contenu modéré</i>" : msg.content|raw }}
+    </div>
+    <div class="post-forum-msg--bottom">
+        <div class="post-forum-msg--answerQuestion">
+            {% if msg.isModerate == false %}
+                {% if isStartMsg is not defined and msg.postBody.isRequestAnswer and app.user != null and msg.postBody.author.id == app.user.id %}
+                    <input type="checkbox" name="answer" class="answer-checkbox" {{ msg.isAnswer ? "checked" }} id="answer-{{ msg.id }}" data-msg="{{ msg.id }}">
+                    <label for="answer-{{ msg.id }}">Répond a la question</label>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="post-forum-msg--createdAt">
+            {{ msg.createdAt|ago }}
+        </div>
+    </div>
+</div>

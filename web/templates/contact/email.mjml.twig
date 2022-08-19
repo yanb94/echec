@@ -1,0 +1,11 @@
+{% extends "email_base.mjml.twig" %}
+
+{% block content %}
+    <mj-section>
+        <mj-column>
+            <mj-text font-size="15px"><span style="font-weight:bold">Nom : </span> {{ firstname }} {{ lastname }}</mj-text>
+          <mj-text font-size="15px"><span style="font-weight:bold">Email : </span> {{ emailAddress }}</mj-text>
+          <mj-text font-size="15px" line-height="25px"><span style="font-weight:bold">Message : </span> {{ message }}</mj-text>
+        </mj-column>
+    </mj-section>
+{% endblock %}

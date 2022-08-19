@@ -1,0 +1,5 @@
+{% for legal in legals %}
+    <a href="{{ path('legal', {'slug': legal.slug}) }}" class="{{ class }}">
+        {{ legal.titleLink }}
+    </a>
+{% endfor %}

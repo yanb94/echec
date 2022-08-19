@@ -1,0 +1,177 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+@use "./../mixins/button.scss" as button;
+@use "./../form/form.scss" as form;
+
+.my_contribution
+{
+    @include element.headPage(
+        $image: "space_member.jpg"
+    )
+    {
+        &--content
+        {
+            &--title
+            {
+                line-height: 50px;
+                font-size: 40px;
+
+                @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                    font-size: 70px;
+                    line-height: 80px;
+                }
+            }
+        }
+        
+    };
+
+    @include element.contPage(){
+        &--list
+        {
+            display: grid;
+            grid-template-columns: 100%;
+            justify-content: center;
+            column-gap: 30px;
+            row-gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+            top: -160px;
+            margin-bottom: -140px;
+            z-index: 3;
+
+            &--pagination
+            {
+                padding: 20px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &--paginate:nth-child(2)
+                {
+                    margin-left: 50px;
+                }
+
+                width: 100%;
+
+                &--next,&--prev
+                {
+                    height: 50px;
+                    width: 50px;
+                    background-color: g.$white;
+                    color: g.$black;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border-radius: 5px;
+                    font-size: 35px;
+                }
+            }
+        }
+    };
+}
+
+.post-forum-msg
+{
+    background-color: g.$white;
+    min-height: 300px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    box-shadow: 0px 2px 5px rgba($color: g.$black, $alpha: .3);
+
+    display: grid;
+    grid-template-rows: 50px 50px auto 60px;
+
+    &.isAnswer
+    {
+        color: g.$white;
+        background-color: map-get($map: g.$primary, $key: "light");
+    }
+
+    &--post
+    {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background-color: map-get($map: g.$primary, $key: "dark");
+        font-family: g.$fontSubtitle;
+        font-size: 15px;
+
+        border-radius: 3px 3px 0 0;
+
+        & > a
+        {
+            color: white;
+        }
+    }
+
+    &--author
+    {
+        font-weight: bold;
+        font-family: g.$fontBody;
+        font-size: 15px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+
+        position: relative;
+    }
+
+    &--content
+    {
+        font-family: g.$fontBody;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: justify;
+        padding: 5px 15px;
+
+        &--moderate
+        {
+            font-style: italic;
+            color: rgba($color: g.$black, $alpha: .4);
+            font-size: 18px;
+        }
+    }
+
+    &--bottom
+    {
+        display: grid;
+        padding: 10px;
+        grid-template-columns: auto auto;
+    }
+
+    &--createdAt
+    {
+        font-family: g.$fontBody;
+        font-size: 15px;
+        text-align: right;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-style: italic;
+
+        position: relative;
+    }
+
+    &--infos
+    {
+        font-family: g.$fontBody;
+        font-size: 16px;
+        text-align: left;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        color: map-get($map: g.$tertiary, $key: "Vdark");
+        font-style: italic;
+        font-weight: bold;
+    }
+
+}

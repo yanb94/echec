@@ -1,0 +1,14 @@
+<div class="drawer--full" id="drawer-full"></div>
+<div class="drawer" id="drawer">
+    <div class="drawer--head">
+        Le coin des échecs
+    </div>
+    <div class="drawer--body">
+        <a href="{{ path('homepage') }}" class="drawer--body--item">Accueil</a>
+        <a href="{{ path('forum') }}" class="drawer--body--item">Forum</a>
+        {{ render_esi(controller("App\\Controller\\LayoutController::drawerSpaceMember")) }}
+        <a href="{{ path('about') }}" class="drawer--body--item">A propos</a>
+        <a href="{{ path('contact') }}" class="drawer--body--item">Contact</a>
+        {{ render_esi(controller("App\\Controller\\LegalController::partialListLegal", {"class": "drawer--body--item"})) }}
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{% set link_user = path('app_login') %}
+{% set link_title = "S'identifier" %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% set link_user = path('space_member') %}
+    {% set link_title = "Espace membre" %}
+{% endif %}
+
+<a class="header--nav--link icon" href="{{ link_user }}" title="{{ link_title }}">
+    <i class="fas fa-user-circle"></i>
+</a>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('app_logout') }}" class="header--nav--link icon" title="Déconnexion">
+        <i class="fas fa-sign-out-alt"></i>
+    </a>
+{% endif %}

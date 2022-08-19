@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        "Nous contacter",
+        "Contactez les administrateurs du coin des échecs",
+        asset('build/images/contact.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+<div class="contact-page">
+
+    <div class="contact-page--head">
+        <div class="contact-page--head--background"></div>
+        <div class="contact-page--head--content">
+            <h1 class="contact-page--head--content--title">Contact</h1>
+        </div>
+    </div>
+    <div class="contact-page--cont">
+        <div class="contact-page--cont--card">
+
+            {{ form_start(form) }}
+
+                {{ form_row(form.firstname) }}
+                {{ form_row(form.lastname) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.message) }}
+
+                <div class="contact-page--cont--card--cont-btn">
+                    <button type="submit" class="contact-page--cont--card--btn">Envoyer</button>
+                </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('contact_page') }}
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org",
+        "@type":"ContactPage",
+        "@id": "{{ url(app.request.attributes.get("_route"), app.request.attributes.get("_route_params")) }}"
+        "name": "Nous Contacter",
+        "description": "Contactez les administrateurs du coin des échecs"
+    }
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('contact_page') }}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+    <div class="error">
+        <div class="error--head">
+            <div class="error--head--background"></div>
+            <div class="error--head--content">
+            </div>
+        </div>
+        <div class="error--cont">
+            <div class="error--cont--card">
+                <div class="error--cont--card--title">
+                    Page inconnu
+                </div>
+                <div class="error--cont--card--msg">
+                    La page que vous recherchiez semble ne pas existé mais vous pouvez néanmoins continuer votre navigation sur le coin des échecs.
+                </div>
+                <div class="error--cont--card--btn-cont">
+                    <a href="{{ path('homepage') }}" class="error--cont--card--btn-home">Accueil</a>
+
+                    <a href="{{ path('forum') }}" class="error--cont--card--btn-login">Forum</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('error') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('error') }}
+{% endblock %}

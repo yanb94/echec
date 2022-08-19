@@ -1,0 +1,90 @@
+@use './../abstracts/' as g;
+
+body.drawer-open
+{
+    height: 100vh;
+    overflow: hidden;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+        height: initial;
+        overflow: initial;
+    }
+}
+
+.drawer
+{   
+    position: absolute;
+    z-index: 10000;
+    width: 300px;
+    top: 60px;
+    bottom: 0;
+
+    background-color:  map-get(g.$primary, "light");
+    box-shadow: 0 3px 6px rgba($color: g.$black, $alpha: .16);
+
+    overflow-y: scroll;
+    left: -300px;
+
+    transition: .7s ease;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+        display: none;
+    }
+
+    &.open
+    {
+        transform: translateX(300px);
+    }
+
+    &--full
+    {
+        display: none;
+        position: absolute;
+        z-index: 9999;
+        top: 60px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        background-color: rgba($color: map-get(g.$primary, "Vdark"), $alpha: .7);
+
+        &.open
+        {
+            display: block;
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+                display: none;
+            }
+        }
+    }
+
+    &--head
+    {
+        background-color:  map-get(g.$primary, "dark");
+        height: 250px;
+        font-family: g.$fontTitle;
+        font-size: 35px;
+        line-height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: g.$white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    &--body
+    {
+        padding: 5px 0;
+
+        &--item
+        {
+            display: block;
+            color: g.$white;
+            font-family: g.$fontSubtitle;
+            font-size: 30px;
+            margin-bottom: 10px;
+            padding: 5px 20px;
+        }
+    }
+}

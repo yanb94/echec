@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}Le coin des échecs{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        "Le coin des échecs",
+        "Le forum des passionnés d'échecs",
+        asset('build/images/homepage.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+    <div class="homepage--head">
+        <div class="homepage--head--image"></div>
+        <div class="homepage--head--content">
+            <div class="homepage--head--content--title">Le coin des échecs</div>
+            <div class="homepage--head--content--subtitle">Le forum des passionnés d'échecs</div>
+            <div class="homepage--head--content--button-cont">
+                <a href="{{ path('forum') }}" class="homepage--head--content--btn-forum">
+                    Voir le forum
+                </a>
+                {{ render_esi(controller("App\\Controller\\HomepageController::secondActionButton")) }}
+            </div>
+        </div>
+    </div>
+    <div class="homepage--list">
+        <div class="homepage--list--title">
+            Sujet du moment
+        </div>
+        {{ render_esi(controller("App\\Controller\\HomepageController::listTopPost")) }}
+        <div class="homepage--list--seeMore">
+            <a class="homepage--list--seeMore--btn" href="{{ path('forum') }}">
+                Voir le forum
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('homepage') }}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Le coin des échecs",
+        "description": "Le forum des passionnés d'échecs"
+    }
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('homepage') }}
+{% endblock %}

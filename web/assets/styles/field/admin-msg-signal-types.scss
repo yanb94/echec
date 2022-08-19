@@ -1,0 +1,36 @@
+@use "./../abstracts/" as g;
+
+.msg-signal-types
+{
+    background-color: #6786a2;
+    // padding: 5px;
+    border-radius: 5px;
+    color: g.$white;
+    font-weight: bold;
+    display: inline-flex;
+    margin-right: 10px;
+    height: 30px;
+    align-items: stretch;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba($color: g.$black, $alpha: .3);
+
+    &--nb
+    {
+        background-color: g.$white;
+        color: #6786a2;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+
+        border-radius: 5px 0 0 5px;
+    }
+
+    &--label
+    {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+    }
+}

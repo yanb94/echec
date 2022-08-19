@@ -1,0 +1,20 @@
+{% extends "email_base.mjml.twig" %}
+
+{% block content %}
+
+    <mj-section>
+        <mj-column>
+            <mj-text font-size="20px" font-weight="900" align="center">
+                Réinitialiser votre mot de passe
+            </mj-text>
+            <mj-text font-size="15px">
+                Pour réinitialiser votre mot de passe veuillez cliquez sur le lien ci-dessous.
+            </mj-text>
+            <mj-text font-style="italic">Ce lien expira dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</mj-text>
+            <mj-button href="{{ url('app_reset_password', {token: resetToken.token}) }}" color="#fff" background-color="#830211" vertical-align="middle" font-size="16px">
+                Réinitialiser mon mot de passe
+            </mj-button>
+        </mj-column>
+    </mj-section>
+
+{% endblock %}

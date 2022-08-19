@@ -1,0 +1,21 @@
+<div id="msg-{{ msg.id }}" class="post-forum-msg">
+    <div class="post-forum-msg--post">
+        <a href="{{ path('forum_post', {'slug': msg.getAttachPost().slug}) }}" target="_blank">
+            {{ msg.getAttachPost().title }}
+        </a>
+    </div>
+    <div class="post-forum-msg--author">
+        De {{ msg.author.username }}
+    </div>
+    <div class="post-forum-msg--content">
+        {{ msg.content|raw }}
+    </div>
+    <div class="post-forum-msg--bottom">
+        <div class="post-forum-msg--infos">
+            {{ msg.isModerate ? "Message modéré" : "" }}
+        </div>
+        <div class="post-forum-msg--createdAt">
+            {{ msg.createdAt|ago }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}Forum{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        "Forum - Le coin des échecs",
+        "Discutez avec les membres de notre communauté de l'actualité des échecs",
+        asset('build/images/forum.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+    <div class="forum">
+        <div class="forum--head">
+            <div class="forum--head--background"></div>
+            <div class="forum--head--content">
+                <h1 class="forum--head--content--title">Forum</h1>
+                <form class="forum--head--content--form" action="{{ path('forum') }}">
+                    <div class="forum--head--content--form--cont">
+                        <input type="search" name="s" id="searchForum" value="{{ searchParam }}" placeholder="Trouver un sujet">
+                        <button title="Rechercher">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="forum--cont">
+            <div class="forum--cont--drawer">
+                <div class="forum--cont--drawer--close">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="forum--cont--drawer--title">
+                    Catégories
+                </div>
+                <div class="forum--cont--drawer--list">
+                    <a href="{{ path('forum') }}" class="forum--cont--drawer--list--item">
+                        Tous les sujets
+                    </a>
+                    {% for category in categories %}
+                        <a href="{{ path('forum', {'category': category.id}) }}" class="forum--cont--drawer--list--item">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="forum--cont--cont">
+                <div class="forum--cont--actions">
+                    <div class="forum--cont--actions--cat-show">
+                        <div class="forum--cont--actions--cat-show--btn">
+                            <i class="fas fa-list"></i>
+                        </div>
+                    </div>
+                    <div class="forum--cont--actions--cont-add">
+                        {% if is_granted('ROLE_USER') %}
+                            <a class="forum--cont--actions--cont-add--btn" href="{{ path('add_post_forum') }}">
+                                Ajouter un post
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if category != null %}
+                    <div class="forum--cont--infos">
+                        {{ category.name }}
+                    </div>
+                {% endif %}
+                {% if searchParam %}
+                    <div class="forum--cont--infos">
+                        {{ searchNb }} Résultat{{ searchNb > 1 ? "s" : "" }} trouvé{{ searchNb > 1 ? "s" : "" }} pour "{{ searchParam }}"
+                    </div>
+                {% endif %}
+                <div class="forum--cont--list">
+                    {% for post in posts %}
+                        {% include "forum/_post.html.twig" with {'post': post} %}
+                    {% endfor %}
+                </div>
+                <div class="forum--cont--pagination">
+                    {% if isPreviousPage %}
+                        {% set params = app.request.query.all|merge({"page": previousPageNb}) %}
+
+                        <a href="{{ path('forum', params) }}" class="forum--cont--pagination--prev forum--cont--pagination--paginate" aria-label="Page précédente">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    {% endif %}
+                    {% if isNextPage %}
+                        {% set params = app.request.query.all|merge({"page": nextPageNb}) %}
+
+                        <a href="{{ path('forum', params) }}" class="forum--cont--pagination--next forum--cont--pagination--paginate" aria-label="Page suivante">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('forum') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('forum') }}
+{% endblock %}

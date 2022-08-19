@@ -1,0 +1,23 @@
+<meta name="postOfList" value="{{ entity.instance.id }}">
+
+<div class="admin-field-message-collection--cont"></div>
+
+<style>
+    .admin-field-message-collection--parent dt{
+        flex: 100%;
+    }
+    @media(min-width: 1024px)
+    {
+        .admin-field-message-collection--parent dt{
+            flex: 0 80%;
+        }
+    }
+</style>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin-field-message_collection') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin-field-message_collection') }}
+{% endblock %}

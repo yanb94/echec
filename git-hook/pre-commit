@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+COMMIT_MSG_FILE='.git/COMMIT_EDITMSG'
+
+touch -a $COMMIT_MSG_FILE
+mkdir -p web/.git
+cp $COMMIT_MSG_FILE web/.git/COMMIT_EDITMSG
+
+STR=$(git status)
+SUB='web/'
+
+case $STR in
+
+  *"$SUB"*)
+    cd "web"
+    DIFF=$(git -c diff.mnemonicprefix=false -c diff.noprefix=false --no-pager diff --relative -r -p -m -M --full-index --no-color --staged | cat)
+    # Grumphp env vars
+
+    export GRUMPHP_GIT_WORKING_DIR="$(git rev-parse --show-toplevel)"
+
+    # Run GrumPHP
+    cd ".."
+    printf "%s\n" "${DIFF}" | docker-compose run --rm --no-deps -T php-fpm php 'vendor/bin/grumphp' 'git:pre-commit' '--skip-success-output'
+    
+    ;;
+esac
+
+CURRENT_DIRECTORY=$(pwd)
+
+case $CURRENT_DIRECTORY in *"/web"*)
+  cd ".." && rm web/.git -R
+  ;;
+esac

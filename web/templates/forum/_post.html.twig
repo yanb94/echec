@@ -1,0 +1,26 @@
+<a class="forum--post" href="{{ path('forum_post', {'slug': post.slug}) }}">
+    <div class="forum--post--icon">
+        {% if post.isRequestAnswer %}
+            {% if post.hasAnswer %}
+                <i class="far fa-check-circle"></i>
+            {% else %}
+                <i class="far fa-question-circle"></i>
+            {% endif %}
+        {% else %}
+            <i class="fas fa-comments"></i>
+        {% endif %}
+    </div>
+    <div class="forum--post--infos">
+        <div class="forum--post--infos--title" title="{{ post.title }}">
+            <div class="forum--post--infos--title--overflow">{{ post.title }}</div>
+        </div>
+        <div class="forum--post--infos--extra">
+            De {{ post.author is not null ? post.author.username : "Anonyme" }}, {{ post.createdAt|ago }} <br>
+            Dernier message: {{ post.lastMsgAt|ago }}
+        </div>
+    </div>
+    <div class="forum--post--nb-comment">
+        <i class="fas fa-comments"></i>
+        <span class="forum--post--nb-comment--nb">{{ post.nbComments }}</span>
+    </div>
+</a>

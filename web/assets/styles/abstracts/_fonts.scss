@@ -1,0 +1,57 @@
+$fontTitle: "Martel";
+$fontSubtitle: "Quicksand";
+$fontBody: "Libre Franklin";
+
+@font-face {
+    font-family: $fontTitle;
+    src: url("./../../fonts/Martel-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: $fontTitle;
+    src: url("./../../fonts/Martel-Bold.ttf");
+    font-display: swap;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: $fontSubtitle;
+    src: url("./../../fonts/Quicksand-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: $fontSubtitle;
+    src: url("./../../fonts/Quicksand-Bold.ttf");
+    font-display: swap;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: $fontBody;
+    src: url("./../../fonts/LibreFranklin-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: $fontBody;
+    src: url("./../../fonts/LibreFranklin-Bold.ttf");
+    font-display: swap;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: $fontBody;
+    src: url("./../../fonts/LibreFranklin-Italic.ttf");
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: $fontBody;
+    src: url("./../../fonts/LibreFranklin-BoldItalic.ttf");
+    font-display: swap;
+    font-style: italic;
+    font-weight: bold;
+}

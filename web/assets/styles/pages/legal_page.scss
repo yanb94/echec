@@ -1,0 +1,70 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+
+.legal-page
+{
+    @include element.headPage(
+        $image: "legal.jpg",
+        $headHeight: 350px
+    ){
+        &--content
+        {
+            &--title
+            {
+                width: 100%;
+                max-width: 1000px;
+                margin-top: 60px;
+                font-weight: bold;
+            }
+        }
+    };
+
+    @include element.contPage(){
+        &--container
+        {
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px 0px;
+
+            color: g.$white;
+
+            h2
+            {
+                font-family: g.$fontSubtitle;
+                font-size: 45px;
+                margin-bottom: 15px;
+            }
+
+            h3
+            {
+                font-family: g.$fontSubtitle;
+                font-size: 25px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            p + h3
+            {
+                margin-top: 10px;
+            }
+
+            p
+            {
+                font-family: g.$fontBody;
+                font-size: 20px;
+                margin-bottom: 10px;
+                text-align: justify;
+            }
+
+            a
+            {
+                font-weight: bold;
+                color: inherit;
+
+                position: relative;
+                text-decoration: underline;
+            }
+        }
+    }
+}

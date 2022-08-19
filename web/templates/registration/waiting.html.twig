@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Demande d'inscription réussi{% endblock %}
+
+{% block body %}
+    <div class="register_waiting">
+        <div class="register_waiting--head">
+            <div class="register_waiting--head--background"></div>
+            <div class="register_waiting--head--content">
+            </div>
+        </div>
+        <div class="register_waiting--cont">
+            <div class="register_waiting--cont--card">
+                <div class="register_waiting--cont--card--title">
+                    Inscription prise en compte
+                </div>
+                <div class="register_waiting--cont--card--msg">
+                    Votre inscription a bien été prise en compte vous allez bientôt recevoir un email pour valider votre inscription.
+                </div>
+                <div class="register_waiting--cont--card--btn-cont">
+                    <a href="{{ path('homepage') }}" class="register_waiting--cont--card--btn-home">Accueil</a>
+                    <a href="{{ path('forum') }}" class="register_waiting--cont--card--btn-forum">Forum</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('register_waiting') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('register_waiting') }}
+{% endblock %}

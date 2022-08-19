@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+
+        {% block meta %}{% endblock %}
+
+        <title>{% block title %}Le coin des échecs{% endblock %}</title>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% include "layout/_header.html.twig" %}
+        {% include "layout/_drawer.html.twig" %}
+        {% include "layout/_search.html.twig" %}
+        {% block body %}{% endblock %}
+        {% include "layout/_footer.html.twig" %}
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "{{ url('homepage') }}",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ url('forum') }}?s={query}",
+                "query": "required",
+                "query-input": "required maxlength=100 name=query"
+            }
+        }
+        </script>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>

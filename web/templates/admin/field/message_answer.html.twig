@@ -1,0 +1,37 @@
+{% for msg in field.value %}
+
+    {% set url_see_message = ea_url().setController('App\\Controller\\Admin\\MessageCrudController').setAction('detail').setEntityId(msg.id) %}
+
+    <div class="admin-field-message-collection answer">
+        <div class="admin-field-message-collection--author">
+            De {{ msg.author != null ? msg.author.username : "<i style='color:grey'>Anonyme</i>" }}
+            <a class="admin-field-message-collection--link" href="{{ url_see_message }}">Voir le message</a>
+        </div>
+        <div class="admin-field-message-collection--content">
+            {{ msg.content|raw }}
+        </div>
+        <div class="admin-field-message-collection--date">
+            {{ msg.createdAt|ago }}
+        </div>
+    </div>
+{% endfor %}
+
+<style>
+    .admin-field-message-collection--parent dt{
+        flex: 100%;
+    }
+    @media(min-width: 1024px)
+    {
+        .admin-field-message-collection--parent dt{
+            flex: 0 80%;
+        }
+    }
+</style>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin-field-message_collection') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin-field-message_collection') }}
+{% endblock %}

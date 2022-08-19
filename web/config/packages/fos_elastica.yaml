@@ -1,0 +1,20 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        post:
+            indexable_callback: 'enabled'
+            persistence:
+                driver: orm
+                model: App\Entity\Post
+            properties:
+                title: { boost: 10 }
+                startMsg:
+                    type: "object"
+                    properties:
+                        content: { boost: 5 }
+                messages:
+                    type: "object"
+                    properties:
+                        content: { boost: 1 }

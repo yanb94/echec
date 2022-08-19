@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié{% endblock %}
+
+{% block body %}
+
+    <div class="request_reset_password">
+
+    <div class="request_reset_password--head">
+        <div class="request_reset_password--head--background"></div>
+        <div class="request_reset_password--head--content">
+            <h1 class="request_reset_password--head--content--title">Mot de passe oublié</h1>
+        </div>
+    </div>
+    <div class="request_reset_password--cont">
+        <div class="request_reset_password--cont--card">
+
+            {% for flash_error in app.flashes('reset_password_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            {{ form_start(requestForm) }}
+                <div class="request_reset_password--cont--card--msg">
+                    <p>
+                        Entrez votre email pour que nous puissions vous envoyer un lien vous permettant de réinitialiser votre mot de passe.
+                    </p>
+                </div>
+
+                {{ form_row(requestForm.email) }}
+                <div class="request_reset_password--cont--card--cont-btn">
+                    <button class="request_reset_password--cont--card--btn">Valider</button>
+                </div>
+
+            {{ form_end(requestForm) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('request_reset_password') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('request_reset_password') }}
+{% endblock %}

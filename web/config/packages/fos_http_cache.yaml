@@ -1,0 +1,11 @@
+fos_http_cache:
+  proxy_client:
+        varnish:
+          http:
+            servers:
+              - varnish:80
+  user_context:
+        enabled: true
+        role_provider: true
+  tags:
+      enabled: true

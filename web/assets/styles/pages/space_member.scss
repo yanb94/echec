@@ -1,0 +1,67 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+
+.space_member
+{
+    @include element.headPage(
+        $image: "space_member.jpg"
+    );
+
+    @include element.contPage(){
+        &--grid
+        {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,260px);
+            max-width: 1000px;
+            justify-content: center;
+            width: 95%;
+
+            position: relative;
+            top: -150px;
+            z-index: 2;
+
+            row-gap: 30px;
+        }
+
+        &--item
+        {
+            display: block;
+            height: 200px;
+            width: 200px;
+            background-color: g.$white;
+            color: g.$black;
+            padding: 20px;
+
+            box-shadow: 5px 5px 6px rgba($color: g.$black, $alpha: .16);
+            transition: .5s;
+            transition-property: box-shadow;
+
+            &:hover
+            {
+                box-shadow: none;
+            }
+            
+            &--icon,&--title
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &--icon
+            {
+                height: 130px;
+                font-size: 110px;
+            }
+
+            &--title
+            {
+                height: 70px;
+                font-family: g.$fontSubtitle;
+                font-size: 25px;
+                text-align: center;
+            }
+        }
+    };
+}

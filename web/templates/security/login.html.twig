@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+{% import "seo/meta.html.twig" as meta %}
+
+{% block title %}S'identifier{% endblock %}
+
+{% block meta %}
+    {{ meta.metaForSeo(
+        "Login - Le coin des échecs",
+        "Connectez vous et rejoignez la communauté du coin des échecs",
+        asset('build/images/login.jpg')
+    ) }}
+{% endblock %}
+
+{% block body %}
+<div class="login-page">
+
+    <div class="login-page--head">
+        <div class="login-page--head--background"></div>
+        <div class="login-page--head--content">
+            <h1 class="login-page--head--content--title">S'identifier</h1>
+        </div>
+    </div>
+    <div class="login-page--cont">
+        <div class="login-page--cont--card">
+            <form class="login-page--cont--card--form" method="post">
+                {% if error %}
+                    <div class="alert alert-danger">Vos identifiants sont incorrects</div>
+                {% endif %}
+
+                <label for="inputUsername" class="form-label">Nom d'utilisateur</label>
+                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-input" placeholder="Indiquer votre nom d'utilisateur" required autofocus>
+                <label for="inputPassword" class="form-label">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-input" placeholder="Indiquer votre mot de passe" required>
+
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                #}
+                <div class="login-page--cont--card--form--btn-cont">
+                    <button class="login-page--cont--card--form--btn" type="submit">
+                        S'identifier
+                    </button>
+                </div>
+            </form>
+            <a href="{{ path('app_forgot_password_request') }}" class="login-page--cont--card--forgot-password">Mot de passe oublié ?</a>
+            <hr class="login-page--cont--card--separator">
+            <div class="login-page--cont--card--label-register">
+                Pas encore inscrit ?
+            </div>
+            <div class="login-page--cont--card--cont-register">
+                <a href="{{ path('app_register') }}" class="login-page--cont--card--cont-register--btn">
+                    Nous rejoindre
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('login') }}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "S'identifier",
+        "description": "Connectez vous et rejoignez la communauté du coin des échecs"
+    }
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('login') }}
+{% endblock %}

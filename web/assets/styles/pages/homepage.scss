@@ -1,0 +1,155 @@
+@use "./../abstracts/" as g;
+@use "./../mixins/button.scss" as button;
+@use "./../mixins/elements.scss" as elem;
+@use "./../layout/" as layout;
+@use "./../item/topic-homepage.scss" as topic;
+
+.homepage
+{
+    &--head
+    {
+        height: 100vh;
+
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+
+        &--image
+        {
+            @include elem.responsiveImage("homepage.jpg");
+            // background-image: url("./../../images/homepage.jpg");
+            z-index: 1;
+            grid-column: 1;
+            grid-row: 1;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: g.$black;
+            background-position: 40% 10%;
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                background-position: 60% 10%;
+            }
+        }
+
+        &--content
+        {
+            z-index: 2;
+            width: 100%;
+
+            background-color: rgba(map-get(g.$primary,"regular"), $alpha: 0.85);
+            height: 100%;
+            margin-left: auto;
+            grid-column: 1;
+            grid-row: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            color: g.$white;
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                background-color: rgba(map-get(g.$primary,"regular"), $alpha: 1.0);
+                width: 40%;
+                min-width: 512px;
+            }
+
+            &--title
+            {
+                font-weight: bold;
+                font-family: g.$fontTitle;
+                font-size: 40px;
+                line-height: 50px;
+                text-align: center;
+                padding: 0px 20px;
+
+                @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                    font-size: 50px;
+                    line-height: 60px;
+                }
+            }
+
+            &--subtitle
+            {
+                font-family: g.$fontSubtitle;
+                font-size: 20px;
+                text-align: center;
+                padding: 0px 20px;
+
+                @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                    font-size: 25px;
+                }
+            }
+
+            &--button-cont
+            {
+                display: grid;
+                grid-template-rows: auto auto;
+                row-gap: 20px;
+                margin-top: 30px;
+            }
+
+            &--btn-forum
+            {
+                @include button.buttonTertiary($width: 200px, $height: 60px, $fontSize: 25px);
+            }
+
+            &--btn-register
+            {
+                @include button.buttonSecondary($width: 200px, $height: 60px, $fontSize: 25px);
+            }
+        }
+    }
+
+    &--list
+    {
+        background-color: map-get($map: g.$tertiary, $key: "regular");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        &--title
+        {
+            font-family: g.$fontTitle;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 50px;
+            color: g.$white;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        &--cont
+        {
+            display: grid;
+            grid-template-columns: 100%;
+            justify-content: center;
+            column-gap: 30px;
+            row-gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        &--seeMore
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+            max-width: 1000px;
+
+            padding: 30px 0;
+
+            &--btn
+            {
+                @include button.buttonTertiary($width: 280px, $height: 80px, $fontSize: 30px);
+            }
+        }
+    }
+}

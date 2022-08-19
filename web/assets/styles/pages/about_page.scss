@@ -1,0 +1,107 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+
+.about-page
+{
+    @include element.headPage(
+        $image: "about.jpg"
+    );
+
+    @include element.contPage(){
+
+        &--container
+        {
+            padding: 20px 0;
+            color: g.$white;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        &--question
+        {
+            font-size: 30px;
+            font-family: g.$fontSubtitle;
+
+            @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                font-size: 35px;
+            }
+        }
+
+        &--desc
+        {
+            font-size: 20px;
+            font-family: g.$fontBody;
+            text-align: justify;
+            margin-top: 20px;
+            line-height: 30px;
+        }
+
+        &--team
+        {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &--title
+            {
+                font-family: g.$fontSubtitle;
+                font-size: 30px;
+                text-align: center;
+
+                @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                    font-size: 35px;
+                }
+            }
+
+            &--list
+            {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, 200px);
+                max-width: 750px;
+                width: 100%;
+                gap: 70px;
+                justify-content: center;
+                margin-top: 25px;
+                margin-bottom: 50px;
+                row-gap: 40px;
+            }
+
+            &--item
+            {
+                width: 200px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+
+                &--img
+                {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 100%;
+                    object-fit: cover;
+                }
+
+                &--title
+                {
+                    font-family: g.$fontBody;
+                    font-weight: bold;
+                    font-size: 25px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+
+                &--desc
+                {
+                    font-family: g.$fontBody;
+                    font-size: 20px;
+                    text-align: justify;
+                    font-style: italic;
+                    line-height: 25px;
+                }
+            }
+        }
+
+    }
+}

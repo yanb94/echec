@@ -1,0 +1,332 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+@use "./../form/form.scss" as form;
+@use "./../mixins/button.scss" as button;
+
+.forum
+{
+    @include element.headPage(
+        $image: "forum.jpg",
+        $headHeight: 500px
+    ){
+        &--content
+        {
+            flex-direction: column;
+
+            &--form
+            {
+                max-width: 500px;
+                width: 100%;
+
+                &--cont
+                {
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: stretch;
+                    padding: 0 10px;
+
+                    input[type='search']
+                    {
+                        height: 50px;
+                        width: 100%;
+                        border-radius: 5px 0 0 5px;
+                        border: none;
+                        padding: 5px;
+                        font-size: 20px;
+
+                        &::placeholder
+                        {
+                            font-style: italic;
+                        }
+                    }
+
+                    button
+                    {
+                        width: 60px;
+                        border: none;
+                        font-size: 25px;
+                        border-radius: 0 5px 5px 0;
+                        background-color: map-get($map: g.$tertiary, $key: "dark");
+                        color: g.$white;
+                    }
+                }
+            }
+        }
+    };
+
+    @include element.contPage(){
+
+        padding: 0 10px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+
+        @media (min-width: map-get(g.$breakPoint,"L")) {
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: stretch;
+        }
+
+        &--drawer
+        {
+            background-color: map-get($map: g.$primary, $key: "regular");
+            width: 300px;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(calc((100% + 10px) * -1));
+            transition: .5s ease;
+
+            &.open
+            {
+                transform: translateX(-10px);
+            }
+
+            &--title
+            {
+                font-family: g.$fontSubtitle;
+                font-size: 35px;
+                text-align: center;
+                color: g.$white;
+
+                padding: 20px;
+            }
+
+            &--close
+            {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font-size: 25px;
+                color: g.$white;
+            }
+
+            &--list
+            {
+                display: grid;
+                grid-auto-flow: row;
+                padding-left: 40px;
+                row-gap: 20px;
+
+
+                &--item
+                {
+                    color: g.$white;
+                    font-weight: bold;
+                    font-family: g.$fontBody;
+                    font-size: 25px;
+                }
+            }
+
+            @media (min-width: map-get(g.$breakPoint,"L")) {
+                position: initial;
+                margin-left: -10px;
+                transform: none;
+
+                width: 400px;
+
+                &--close
+                {
+                    display: none;
+                }
+
+                &.open
+                {
+                    transform: none;
+                }
+            }
+        }
+
+        &--cont
+        {
+            width: 100%;
+
+            & > *
+            {
+                max-width: 1200px;
+            }
+
+            @media (min-width: map-get(g.$breakPoint,"L")) {
+                padding: 0 25px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }            
+        }
+
+        &--infos
+        {
+            font-family: g.$fontSubtitle;
+            font-weight: bold;
+            color: g.$white;
+            font-size: 25px;
+            
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+
+        }
+
+        &--actions
+        {
+            display: grid;
+            grid-template-columns: auto auto;
+            width: 100%;
+            padding: 15px 0px;
+
+            &--cat-show
+            {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                &--btn
+                {
+                    @include button.buttonPrimary($height: 70px,$width: 70px,$fontSize: 35px){
+                        border-radius: 40px
+                    };
+                    cursor: pointer;
+
+                    @media (min-width: map-get(g.$breakPoint,"L")) {
+                        display: none;
+                    }
+                }
+            }
+
+            &--cont-add
+            {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+
+                &--btn
+                {
+                    @include button.buttonPrimary($height: 60px,$width: 200px,$fontSize: 25px);
+                }
+            }
+
+        }
+
+        &--list
+        {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        &--pagination
+        {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &--paginate:nth-child(2)
+            {
+                margin-left: 50px;
+            }
+
+            width: 100%;
+
+            &--next,&--prev
+            {
+                height: 50px;
+                width: 50px;
+                background-color: g.$white;
+                color: g.$black;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 5px;
+                font-size: 35px;
+            }
+        }
+
+    }
+
+    &--post
+    {
+        display: grid;
+        grid-template-columns: 80px auto 50px;
+        background-color: g.$white;
+        color: g.$black;
+        border-radius: 5px;
+        margin-bottom: 10px;
+
+        @media (min-width: map-get(g.$breakPoint,"S")) {
+            grid-template-columns: 80px auto 80px;
+        }
+
+        &:nth-of-type(even)
+        {
+            background-color: darken(g.$white, 10%);
+        }
+
+        &--icon
+        {
+            height: 70px;
+            font-size: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &--infos
+        {
+            display: grid;
+            grid-template-rows: auto auto;
+
+            &--title
+            {
+                font-family: g.$fontBody;
+                font-size: 15px;
+                font-weight: bold;
+                display: flex;
+                align-items: flex-end;
+                // min-width: 0;
+
+                @media (min-width: map-get(g.$breakPoint,"S")) {
+                    font-size: 25px;
+                }
+
+                // &--overflow
+                // {
+                //     // text-overflow: ellipsis;
+                //     // white-space: nowrap;
+                //     // overflow: hidden;
+                // }
+            }
+
+            &--extra
+            {
+                font-family: g.$fontBody;
+                font-size: 12px;
+                font-style: italic;
+            }
+        }
+
+        &--nb-comment
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+
+            @media (min-width: map-get(g.$breakPoint,"S")) {
+                font-size: 25px;
+            }
+
+            &--nb
+            {
+                font-family: g.$fontBody;
+                font-size: 20px;
+                font-weight: bold;
+                margin-left: 5px;
+            }
+        }
+    }
+}

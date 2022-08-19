@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Demande d'inscription réussi{% endblock %}
+
+{% block body %}
+    <div class="register_confirmation">
+        <div class="register_confirmation--head">
+            <div class="register_confirmation--head--background"></div>
+            <div class="register_confirmation--head--content">
+            </div>
+        </div>
+        <div class="register_confirmation--cont">
+            <div class="register_confirmation--cont--card">
+                <div class="register_confirmation--cont--card--title">
+                    Inscription validé
+                </div>
+                <div class="register_confirmation--cont--card--msg">
+                    Votre inscription a bien été validé, vous pouvez dès a présent vous connecter sur votre compte.
+                </div>
+                <div class="register_confirmation--cont--card--btn-cont">
+                    <a href="{{ path('homepage') }}" class="register_confirmation--cont--card--btn-home">Accueil</a>
+
+                    <a href="{{ path('app_login') }}" class="register_confirmation--cont--card--btn-login">Se connecter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('register_confirmation') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('register_confirmation') }}
+{% endblock %}

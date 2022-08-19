@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier mes données{% endblock %}
+
+{% block body %}
+
+    <div class="edit_member">
+        <div class="edit_member--head">
+            <div class="edit_member--head--background"></div>
+            <div class="edit_member--head--content">
+                <h1 class="edit_member--head--content--title">Modifier mes données</h1>
+            </div>
+        </div>
+        <div class="edit_member--cont">
+            <div class="edit_member--cont--card">
+                {% for flash_success in app.flashes('success-edit-member') %}
+                    <div class="alert alert-success" role="alert">{{ flash_success }}</div>
+                {% endfor %}
+                {{ form_start(form) }}
+                    {{ form_row(form.firstname) }}
+                    {{ form_row(form.lastname) }}
+                    <div class="edit_member--cont--card--btn-cont">
+                        <button class="edit_member--cont--card--btn">Editer</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('edit_member') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('edit_member') }}
+{% endblock %}

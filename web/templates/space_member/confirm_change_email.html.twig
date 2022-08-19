@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Changement d'email réussi{% endblock %}
+
+{% block body %}
+    <div class="confirm_change_email">
+        <div class="confirm_change_email--head">
+            <div class="confirm_change_email--head--background"></div>
+            <div class="confirm_change_email--head--content">
+            </div>
+        </div>
+        <div class="confirm_change_email--cont">
+            <div class="confirm_change_email--cont--card">
+                <div class="confirm_change_email--cont--card--title">
+                    Changement d'email validé
+                </div>
+                <div class="confirm_change_email--cont--card--msg">
+                    Le changement d'email que vous avez sollicité a été effectué avec succès.
+                    Vous pouvez dès a présent continuer votre navigation sur le coin des échecs.
+                </div>
+                <div class="confirm_change_email--cont--card--btn-cont">
+                    <a href="{{ path('homepage') }}" class="confirm_change_email--cont--card--btn-home">Accueil</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('space_member') }}" class="confirm_change_email--cont--card--btn-login">Mon espace</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="confirm_change_email--cont--card--btn-login">Se connecter</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('confirm_change_email') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('confirm_change_email') }}
+{% endblock %}

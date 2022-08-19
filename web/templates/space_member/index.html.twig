@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Membre{% endblock %}
+
+{% block body %}
+    <div class="space_member">
+        <div class="space_member--head">
+            <div class="space_member--head--background"></div>
+            <div class="space_member--head--content">
+                <h1 class="space_member--head--content--title">Espace Membre</h1>
+            </div>
+        </div>
+        <div class="space_member--cont">
+            <div class="space_member--cont--grid">
+                {% for item in items %}
+                    {% include "space_member/_item_space.html.twig" with {'title': item.title, 'icon': item.icon, 'link': item.link} %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('space_member') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('space_member') }}
+{% endblock %}

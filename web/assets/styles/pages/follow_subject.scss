@@ -1,0 +1,61 @@
+@use "./../abstracts/" as g;
+@use "./../layout/" as layout;
+@use "./../mixins/elements.scss" as element;
+@use "./../mixins/button.scss" as button;
+@use "./../form/form.scss" as form;
+
+@use "./../item/topic-homepage.scss" as topic;
+
+.follow_subject
+{
+    @include element.headPage(
+        $image: "space_member.jpg"
+    );
+
+    @include element.contPage(){
+        &--list
+        {
+            display: grid;
+            grid-template-columns: 100%;
+            justify-content: center;
+            column-gap: 30px;
+            row-gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+            top: -160px;
+            margin-bottom: -140px;
+            z-index: 3;
+
+            &--pagination
+            {
+                padding: 20px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &--paginate:nth-child(2)
+                {
+                    margin-left: 50px;
+                }
+
+                width: 100%;
+
+                &--next,&--prev
+                {
+                    height: 50px;
+                    width: 50px;
+                    background-color: g.$white;
+                    color: g.$black;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border-radius: 5px;
+                    font-size: 35px;
+                }
+            }
+        }
+    }
+}

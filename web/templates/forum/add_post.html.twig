@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un post{% endblock %}
+
+{% block body %}
+    <div class="add-post">
+        <div class="add-post--head">
+            <div class="add-post--head--background"></div>
+            <div class="add-post--head--content">
+                <h1 class="add-post--head--content--title">Ajouter un post</h1>
+            </div>
+        </div>
+        <div class="add-post--cont">
+            <div class="add-post--cont--card">
+                {{ form_start(form) }}
+
+                {{ form_row(form.title) }}
+                {# {{ form_row(form.categories) }} #}
+
+                {{ form_label(form.categories) }}
+                {{ form_errors(form.categories) }}
+                <div class="list-categories">
+                    {% for field in form.categories %}
+                        <div class="form-category-checkbox" >
+                            <div class="form-category-checkbox--input">
+                                {{ form_widget(field) }}
+                            </div>
+                            {{ form_label(field) }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {{ form_row(form.startMsg) }}
+                {{ form_row(form.isRequestAnswer) }}
+
+                <div class="add-post--cont--card--cont-btn">
+                    <button type="submit" class="add-post--cont--card--btn">Envoyer</button>
+                </div>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('add_post') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('add_post') }}
+{% endblock %}

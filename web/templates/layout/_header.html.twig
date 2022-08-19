@@ -1,0 +1,24 @@
+<header class="header">
+    <div class="header--drawer">
+        <div id="drawer-button" class="header--drawer--button">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    <div class="header--nav">
+        <a class="header--nav--link" href="{{ path('homepage') }}">
+            Acceuil
+        </a>
+        <a class="header--nav--link" href="{{ path('forum') }}" >
+            Forum
+        </a>
+
+        {{ render_esi(controller('App\\Controller\\LayoutController::headerSpaceMember')) }}
+
+        <form class="header--nav--form" action="{{ path('forum') }}" id="searchForm">
+            <input class="header--nav--form--search" type="search" name="s" id="searchInput" aria-label="Barre de recherche">
+        </form>
+        <div id="searchButton" class="header--nav--link icon">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+</header>

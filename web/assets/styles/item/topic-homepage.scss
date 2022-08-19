@@ -1,0 +1,111 @@
+@use "./../abstracts/" as g;
+
+.topic-homepage
+{
+    width: 100%;
+    min-height: 180px;
+    background-color: map-get($map: g.$secondary, $key: "Vlight");
+    box-shadow: 0 3px 6px rgba(map-get($map: g.$secondary, $key: "Vdark"), $alpha: 0.5);
+
+    display: grid;
+    grid-template-rows: auto 70px;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+        grid-template-rows: auto;
+        grid-template-columns: auto 130px;
+    }
+
+
+    &--infos
+    {
+        color: map-get($map: g.$tertiary, $key: "Vdark");
+
+        &--title
+        {
+            font-family: g.$fontSubtitle;
+            font-size: 35px;
+            padding: 10px 20px;
+            
+        }
+
+        &--msg
+        {
+            font-family: g.$fontSubtitle;
+            padding: 0 20px;
+            font-size: 20px;
+        }
+
+        &--dates
+        {
+            margin: 15px 20px;
+
+            &--createdAt, &--lastMsg
+            {
+                display: grid;
+                grid-template-columns: auto;
+                padding: 5px 0;
+
+                &--label
+                {
+                    text-align: left;
+                    font-family: g.$fontSubtitle;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    &--seeMore
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: g.$white;
+        font-family: g.$fontSubtitle;
+        font-size: 30px;
+        background-color: map-get($map: g.$primary, $key: "regular");
+        transition: .5s;
+
+        &:hover
+        {
+            background-color: map-get($map: g.$primary, $key: "dark");
+        }
+    }
+
+    &--follow
+    {
+        display: none;
+    }
+}
+
+.follow.topic-homepage
+{
+    grid-template-rows: auto 70px 70px;
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+        grid-template-rows: auto;
+        grid-template-columns: auto 130px 130px;
+    }
+
+    .topic-homepage
+    {
+        &--follow
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: g.$white;
+            font-family: g.$fontSubtitle;
+            font-size: 30px;
+            background-color: map-get($map: g.$tertiary, $key: "dark");
+            transition: .5s;
+
+            &:hover
+            {
+                background-color: map-get($map: g.$tertiary, $key: "Vdark");
+            }
+        }
+    }
+    
+}

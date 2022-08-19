@@ -1,0 +1,81 @@
+@use "./../abstracts/" as g;
+
+.alert
+{
+    font-family: g.$fontSubtitle;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    &.alert-danger
+    {
+        background-color: map-get($map: g.$tertiary, $key: "regular");
+        color: g.$white;
+    }
+
+    &.alert-success
+    {
+        background-color: map-get($map: g.$primary, $key: "regular");
+        color: g.$white;
+    }
+}
+
+.form
+{
+    &-error
+    {
+        font-family: g.$fontBody;
+        font-size: 13px;
+        color: map-get($map: g.$tertiary, $key: "regular");
+        margin-bottom: 5px;
+    }
+
+    &-label
+    {
+        font-family: g.$fontSubtitle;
+        font-size: 25px;
+        margin-bottom: 5px;
+        display: block;
+
+        &-checkbox
+        {
+            font-family: g.$fontSubtitle;
+            font-size: 18px;
+        }
+    }
+
+    &-input
+    {
+        width: 100%;
+        height: 40px;
+        border: 1px solid #BEBEBE;
+        border-radius: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-family: g.$fontBody;
+        font-size: 20px;
+        margin-bottom: 5px;
+
+        &::placeholder
+        {
+            font-size: 15px;
+            font-style: italic;
+            color: #BEBEBE;
+            font-family: g.$fontBody;
+        }
+    }
+
+    &-textarea
+    {
+        min-height: 200px;
+    }
+
+    &-row
+    {
+        &-checkbox
+        {
+            margin: 15px 0;
+        }
+    }
+}

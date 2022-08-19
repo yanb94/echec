@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur serveur{% endblock %}
+
+{% block body %}
+    <div class="error">
+        <div class="error--head">
+            <div class="error--head--background"></div>
+            <div class="error--head--content">
+            </div>
+        </div>
+        <div class="error--cont">
+            <div class="error--cont--card">
+                <div class="error--cont--card--title">
+                    Erreur Serveur
+                </div>
+                <div class="error--cont--card--msg">
+                    Notre serveur a rencontré un problème. Vous pouvez dès a présent continuer votre navigation ou réassayer ultérieurement.
+                </div>
+                <div class="error--cont--card--btn-cont">
+                    <a href="{{ path('homepage') }}" class="error--cont--card--btn-home">Accueil</a>
+
+                    <a href="{{ path('forum') }}" class="error--cont--card--btn-login">Forum</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('error') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('error') }}
+{% endblock %}

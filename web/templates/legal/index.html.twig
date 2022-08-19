@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ legal.title }}{% endblock %}
+
+{% block body %}
+    <div class="legal-page">
+        <div class="legal-page--head">
+            <div class="legal-page--head--background"></div>
+            <div class="legal-page--head--content">
+                <div class="legal-page--head--content--title">
+                    {{ legal.title }}
+                </div>
+            </div>
+        </div>
+        <div class="legal-page--cont">
+            <div class="legal-page--cont--container">
+                {{ legal.content|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('legal_page') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('legal_page') }}
+{% endblock %}

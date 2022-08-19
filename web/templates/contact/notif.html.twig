@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block body %}
+<div class="notif-contact-page">
+
+    <div class="notif-contact-page--head">
+        <div class="notif-contact-page--head--background"></div>
+        <div class="notif-contact-page--head--content">
+        </div>
+    </div>
+    <div class="notif-contact-page--cont">
+        <div class="notif-contact-page--cont--card">
+            <div class="notif-contact-page--cont--card--title">
+                Message envoyé
+            </div>
+            <div class="notif-contact-page--cont--card--msg">
+                Votre message a bien été envoyé. Nous ferons en sorte de vous répondre dans les plus bref délais.
+            </div>
+            <div class="notif-contact-page--cont--card--btn-cont">
+                <a href="{{ path('homepage') }}" class="notif-contact-page--cont--card--btn-home">Accueil</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('space_member') }}" class="notif-contact-page--cont--card--btn-login">Espace Membre</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="notif-contact-page--cont--card--btn-login">Se connecter</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('notif_contact_page') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('notif_contact_page') }}
+{% endblock %}

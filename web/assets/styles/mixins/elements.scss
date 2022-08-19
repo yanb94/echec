@@ -1,0 +1,125 @@
+@use "./../abstracts/" as g;
+
+@mixin headPage($image,$headHeight: 450px) {
+    
+    &--head
+    {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+
+        height: $headHeight;
+        background-color: map-get(g.$primary,"regular");
+
+        &--background
+        {
+            grid-column: 1;
+            grid-row: 1;
+            z-index: 1;
+            height: $headHeight - 60px;
+            margin-top: 60px;
+            // background-image: url($image);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+            @include responsiveImage($image);
+        }
+
+        &--content
+        {
+            grid-column: 1;
+            grid-row: 1;
+            z-index: 2;
+            background-color: rgba($color: map-get(g.$primary,"regular"), $alpha: .8);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &--title
+            {
+                color: g.$white;
+                font-family: g.$fontTitle;
+                font-size: 50px;
+                line-height: 60px;
+                text-align: center;
+
+                @media (min-width: map-get($map: g.$breakPoint, $key: "S")) {
+                    font-size: 70px;
+                    line-height: 80px;
+                }
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin contPage($headHeight: 450px) {
+    
+    &--cont
+    {
+        min-height: calc(100vh - #{$headHeight} );
+        background-color: map-get($map: g.$tertiary, $key: "regular");
+
+        display: flex;
+        justify-content: center;
+        align-items: start;
+
+        padding: 0 20px;
+
+        @content;
+    }
+}
+
+@mixin cardPage($maxWidth,$cardMargin: 180px) {
+    
+    &--card
+    {
+        position: relative;
+
+        background-color: g.$white;
+        top: $cardMargin*-1;
+
+        z-index: 4;
+
+        border-radius: 5px;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 20px;
+
+        max-width: $maxWidth;
+        width: 90%;
+
+        @content;
+    }
+}
+
+@mixin responsiveImage($image)
+{
+
+    $imageOriginalPath: "./../../images/";
+    $imageResponsivePath: "./../../images_responsives/";
+
+    background-image: url($imageResponsivePath + "S/" + $image);
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "M")) {
+        background-image: url($imageResponsivePath + "M/" + $image);
+    }
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "L")) {
+        background-image: url($imageResponsivePath + "L/" + $image);
+    }
+
+    @media (min-width: map-get($map: g.$breakPoint, $key: "XL")) {
+        background-image: url($imageResponsivePath + "XL/" + $image);
+    }
+
+    @media (min-width: 1600px) {
+        background-image: url($imageOriginalPath + $image);
+    }
+}
